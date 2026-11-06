@@ -196,15 +196,18 @@ function beatsMarkup(lesson) {
 }
 
 function posterMarkup(hazard) {
-  if (!hazard.infographic) {
+  const posters = hazard.posters?.length ? hazard.posters : hazard.infographic ? [hazard.infographic] : [];
+  if (!posters.length) {
     return `<img class="poster-placeholder" src="${PLACEHOLDER_IMG}" alt="">`;
   }
-  // One picture per language; the link opens it full size.
-  const src = esc(pick(hazard.infographic));
-  return `
-    <a class="poster" href="${src}" target="_blank" rel="noopener" data-category="${esc(hazard.category)}">
-      <img class="poster__img" src="${src}" alt="${esc(`${t("learn.infographic")}: ${pick(hazard.name)}`)}" width="938" height="938">
-    </a>`;
+  // One picture per language; each link opens at full size.
+  return `<div class="poster-gallery">${posters.map((poster) => {
+    const src = esc(pick(poster));
+    return `
+      <a class="poster" href="${src}" target="_blank" rel="noopener" data-category="${esc(hazard.category)}">
+        <img class="poster__img" src="${src}" alt="${esc(`${t("learn.infographic")}: ${pick(hazard.name)}`)}" width="938" height="938">
+      </a>`;
+  }).join("")}</div>`;
 }
 
 async function subjectsMarkup(hazard, lesson) {

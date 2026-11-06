@@ -90,8 +90,12 @@ async function allFiles() {
     fetchJSON("js/data/scenes.json"),
     builtGameFiles().catch(() => []),
   ]);
+  const posterFiles = hazards.flatMap((h) => {
+    const posters = h.posters?.length ? h.posters : (h.infographic ? [h.infographic] : []);
+    return posters.flatMap((poster) => [poster?.en, poster?.fil]);
+  });
   return [
-    ...new Set([...hazards.flatMap((h) => [h.video, h.image, h.infographic?.en, h.infographic?.fil]), ...slides.map((s) => sceneUrl(s.id)), ...games].filter(Boolean)),
+    ...new Set([...hazards.flatMap((h) => [h.video, h.image]), ...posterFiles, ...slides.map((s) => sceneUrl(s.id)), ...games].filter(Boolean)),
   ];
 }
 

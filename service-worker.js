@@ -33,7 +33,7 @@
  * -------------------------------------------------------------
  */
 
-const CACHE_VERSION = "v46";
+const CACHE_VERSION = "v47";
 const SHELL_CACHE = `kalasag-shell-${CACHE_VERSION}`;
 const DATA_CACHE = `kalasag-data-${CACHE_VERSION}`;
 const SAVED_CACHE = "kalasag-saved-v1"; // same name as in js/core/offline.js
@@ -164,6 +164,7 @@ const SHELL_FILES = [
   "assets/icons/apple-touch-icon.png",
   "assets/icons/icon-192.png",
   "assets/icons/icon-512.png",
+  "assets/infographics/poster.webp",
   "assets/images/Blank.jpg",
 
   ...SPRITES,
@@ -202,9 +203,12 @@ async function precacheFromContent() {
   const [{ hazards }, { slides }] = await Promise.all([read("js/data/hazards.json"), read("js/data/scenes.json")]);
   const art = hazards.flatMap((h) => [h.icon, h.banner]); // Home posters, Collections, Learn cards: ~0.5 MB
   // Collections poster thumbnails (~0.4 MB). Full posters (~10 MB) cache when opened, or with "Save everything".
-  const posters = hazards.flatMap((h) =>
-    h.infographic ? [h.infographic.en, h.infographic.fil].map((src) => src.replace(/\.webp$/, "-thumb.webp")) : []
-  );
+  const posters = hazards.flatMap((h) => {
+    const posters = h.posters?.length ? h.posters : (h.infographic ? [h.infographic] : []);
+    return posters.flatMap((poster) =>
+      poster ? [poster.en, poster.fil].filter(Boolean).map((src) => src.replace(/\.webp$/, "-thumb.webp")) : []
+    );
+  });
   const scenes = slides.slice(0, OFFLINE_SCENES).map((slide) => `assets/images/scenes/${slide.id}.webp`);
   const content = hazards.flatMap((h) => [h.lesson, h.quizDataPath]); // ~0.1 MB in all
   await Promise.all([addEach(SHELL_CACHE, [...art, ...posters, ...scenes]), addEach(DATA_CACHE, content)]);

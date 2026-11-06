@@ -182,6 +182,10 @@
       "image": "assets/images/hazards/el-nino.webp",
       "video": "assets/videos/El_Nino_Save_Water_Agila.mp4",
       "infographic": { "en": "assets/infographics/elnino-en.webp", "fil": "assets/infographics/elnino-fil.webp" },
+      "posters": [
+        { "en": "assets/infographics/elnino-en.webp", "fil": "assets/infographics/elnino-fil.webp" },
+        { "en": "assets/infographics/elnino-poster.webp", "fil": "assets/infographics/elnino-poster.webp" }
+      ],
       "lesson": "js/data/lessons/el-nino.json",
       "quizDataPath": "js/data/quizzes/el-nino.json",
       "game": "water-ways",
