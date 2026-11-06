@@ -184,7 +184,7 @@
       "infographic": { "en": "assets/infographics/elnino-en.webp", "fil": "assets/infographics/elnino-fil.webp" },
       "posters": [
         { "en": "assets/infographics/elnino-en.webp", "fil": "assets/infographics/elnino-fil.webp" },
-        { "en": "assets/infographics/elnino-poster.webp", "fil": "assets/infographics/elnino-poster.webp" }
+        { "en": "assets/infographics/elnino-poster.webp", "fil": "assets/infographics/elnino-poster-fil.webp" }
       ],
       "lesson": "js/data/lessons/el-nino.json",
       "quizDataPath": "js/data/quizzes/el-nino.json",

@@ -107,16 +107,28 @@
 
 /* ---------- Posters grid ---------- */
 .poster-feature {
-  display: block;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-4);
   width: 100%;
   margin: 0 0 var(--sp-4);
+}
+.poster-feature:has(.poster-feature__item:only-child) {
+  grid-template-columns: minmax(0, 1fr);
+}
+.poster-feature__item {
+  display: block;
+  overflow: hidden;
   border: 4px solid var(--cat);
   border-radius: var(--radius);
-  overflow: hidden;
   box-shadow: var(--shadow-step) var(--cat);
   background: var(--surface);
+  max-width: min(100%, 740px);
 }
-.poster-feature img {
+.poster-feature:has(.poster-feature__item:only-child) .poster-feature__item {
+  margin-inline: auto;
+}
+.poster-feature__item img {
   display: block;
   width: 100%;
   height: auto;

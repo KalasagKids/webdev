@@ -50,8 +50,24 @@ function renderAll() {
   renderCertificate();
   renderJumpBackIn();
   renderGamesCard();
+  renderFeaturePoster();
   renderInfographics();
   renderStatsCard();
+}
+
+function renderFeaturePoster() {
+  const box = document.querySelector("[data-feature-posters]");
+  if (!box) return;
+
+  const lang = state.getLanguage();
+  const image = lang === "fil" ? "assets/infographics/poster-fil.webp" : "assets/infographics/poster.webp";
+  const alt = lang === "fil" ? "Safety poster in Filipino" : "Safety poster in English";
+
+  box.innerHTML = `
+    <a class="poster-feature__item" href="${image}" target="_blank" rel="noopener">
+      <img src="${image}" alt="${alt}" width="960" height="960" loading="eager">
+    </a>
+  `;
 }
 
 // ---------- Certificate (every video watched + every quiz passed) ----------

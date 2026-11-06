@@ -33,7 +33,7 @@
  * -------------------------------------------------------------
  */
 
-const CACHE_VERSION = "v47";
+const CACHE_VERSION = "v48";
 const SHELL_CACHE = `kalasag-shell-${CACHE_VERSION}`;
 const DATA_CACHE = `kalasag-data-${CACHE_VERSION}`;
 const SAVED_CACHE = "kalasag-saved-v1"; // same name as in js/core/offline.js
@@ -165,6 +165,7 @@ const SHELL_FILES = [
   "assets/icons/icon-192.png",
   "assets/icons/icon-512.png",
   "assets/infographics/poster.webp",
+  "assets/infographics/poster-fil.webp",
   "assets/images/Blank.jpg",
 
   ...SPRITES,
